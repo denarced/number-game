@@ -83,8 +83,6 @@ int *NumberGame::getVals() const {
 }
 
 NumberGame::NumberGame(NumberGame &alkuperainen) {
-    // sis��nrakennettu tekisi n�in :
-    // m_arvo = alkuper�inen.m_arvo;
     m_arvo = (int *) malloc(16 * sizeof(int));
     for (int i = 0; i < 15; ++i) {
         m_arvo[i] = i + 1;
