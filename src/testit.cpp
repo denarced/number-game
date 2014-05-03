@@ -1,10 +1,10 @@
 #include <iostream>
-#include "Numeropeli.h"
+#include "NumberGame.h"
 
 using namespace std;
 
 int main(int, char **) {
-    Numeropeli test;
+    NumberGame test;
     /*
     if( test.siirto(11))
         cerr << "Virhe 11" << endl;

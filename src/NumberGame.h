@@ -1,16 +1,16 @@
-class Numeropeli {
+class NumberGame {
 protected:
     /*
      *  t�nne talletetaan numerotaulukko
      */
     int *m_arvo;
 public:
-    Numeropeli(void);
+    NumberGame(void);
     /*
      *  copy-constructor
      */
-    Numeropeli(Numeropeli &alkuperainen);
-    ~Numeropeli(void);
+    NumberGame(NumberGame &alkuperainen);
+    ~NumberGame(void);
     /* sekoittaa pelin
      * esiehto : true
      * j�lkiehto : taulukko sis�lt�� luvut 1-15 ja tyhj�n

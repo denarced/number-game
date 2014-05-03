@@ -1,11 +1,11 @@
-#include "Numeropeli.h"
+#include "NumberGame.h"
 #include <stdlib.h>
 #include <iomanip>
 #include <iostream>
 
 using namespace std;
 
-Numeropeli::Numeropeli(void) {
+NumberGame::NumberGame(void) {
     m_arvo = (int *)malloc(16 * sizeof(int));
     for (int i = 0; i < 15; ++i) {
         m_arvo[i] = i + 1;
@@ -13,11 +13,11 @@ Numeropeli::Numeropeli(void) {
     m_arvo[15] = 0;
 }
 
-Numeropeli::~Numeropeli(void) {
+NumberGame::~NumberGame(void) {
     free(m_arvo);
 }
 
-void Numeropeli::sekoita(void) {
+void NumberGame::sekoita(void) {
     for (int i = 0; i < 16; ++i)
         *(m_arvo + i) = i;
     srand(time(0));
@@ -42,7 +42,7 @@ void Numeropeli::sekoita(void) {
     */
 }
 
-bool Numeropeli::siirto(int numero) {
+bool NumberGame::siirto(int numero) {
     if (numero < 1 || numero > 15)
         return false;
     int num_loc, zero_loc;
@@ -95,18 +95,18 @@ bool Numeropeli::siirto(int numero) {
     return false;
 }
 
-bool Numeropeli::isFinished(void) const {
+bool NumberGame::isFinished(void) const {
     for (int i = 0; i < 15; ++i)
         if (m_arvo[i] != (i + 1))
             return false;
     return true;
 }
 
-int *Numeropeli::getVals(void) const {
+int *NumberGame::getVals(void) const {
     return this->m_arvo;
 }
 
-Numeropeli::Numeropeli(Numeropeli &alkuperainen) {
+NumberGame::NumberGame(NumberGame &alkuperainen) {
     // sis��nrakennettu tekisi n�in :
     // m_arvo = alkuper�inen.m_arvo;
     m_arvo = (int *) malloc(16 * sizeof(int));
