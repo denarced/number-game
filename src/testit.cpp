@@ -1,18 +1,7 @@
-#include <iostream>
 #include "NumberGame.h"
-
-using namespace std;
 
 int main(int, char **) {
     NumberGame test;
-    /*
-    if( test.siirto(11))
-        cerr << "Virhe 11" << endl;
-    if( !test.siirto(15))
-        cerr << "Virhe 15" << endl;
-    if( !test.siirto(12))
-        cerr << "Virhe 12" << endl;
-    */
     test.sekoita();
     test.siirto(1);
     test.siirto(3);

@@ -1,9 +1,7 @@
 #include "NumberGame.h"
-#include <stdlib.h>
-#include <iomanip>
-#include <iostream>
 
-using namespace std;
+#include <cstdlib>
+#include <ctime>
 
 NumberGame::NumberGame() {
     m_arvo = (int *)malloc(16 * sizeof(int));
@@ -31,15 +29,6 @@ void NumberGame::sekoita() {
         *(m_arvo + mihin) = *(m_arvo + mista);
         *(m_arvo + mista) = temp;
     }
-    /*
-    for (int i=0;i<16;++i)
-    {
-        cout << setw(3) << *(m_arvo + i);
-        if(i%4 == 3)
-            cout << endl;
-    }
-    cout << endl;
-    */
 }
 
 bool NumberGame::siirto(int numero) {
@@ -52,10 +41,6 @@ bool NumberGame::siirto(int numero) {
         if (*(m_arvo + i) == 0)
             zero_loc = i;
     }
-    /*
-    cout << num_loc << endl;
-    cout << zero_loc << endl;
-    */
     bool top, bottom, right, left;
     top = bottom = right = left = true;
     if (zero_loc < 4)
@@ -83,15 +68,6 @@ bool NumberGame::siirto(int numero) {
         return false;
     *(m_arvo + zero_loc) = numero;
     *(m_arvo + num_loc) = 0;
-    /*
-    for (int i=0;i<16;++i)
-    {
-        cout << setw(3) << *(m_arvo + i);
-        if(i%4 == 3)
-            cout << endl;
-    }
-    cout << endl;
-    */
     return false;
 }
 
