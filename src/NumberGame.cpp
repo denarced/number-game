@@ -84,8 +84,7 @@ int *NumberGame::getVals() const {
 
 NumberGame::NumberGame(NumberGame &rhs) {
     board = (int *) malloc(16 * sizeof(int));
-    for (int i = 0; i < 15; ++i) {
-        board[i] = i + 1;
+    for (int i = 0; i < 16; ++i) {
+        board[i] = rhs.board[i];
     }
-    board[15] = 0;
 }

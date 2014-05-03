@@ -28,9 +28,34 @@ void testShuffle() {
     }
 }
 
+void testCopyConstructor() {
+    NumberGame first;
+    NumberGame second(first);
+    if (first.getVals() == second.getVals()) {
+        throw TestException("Objects share internal pointer.", __FILE__, __LINE__);
+    }
+}
+
+void testCopyConstructorAndBoardValues() {
+    NumberGame first;
+    first.shuffle();
+    NumberGame second(first);
+
+    int *firstBoard = first.getVals();
+    int *secondBoard = second.getVals();
+
+    for (int i = 0; i < 16; ++i) {
+        if (firstBoard[i] != secondBoard[i]) {
+            throw TestException("Copy ctor does not duplicate board.", __FILE__, __LINE__);
+        }
+    }
+}
+
 int main() {
     try {
         testShuffle();
+        testCopyConstructor();
+        testCopyConstructorAndBoardValues();
     } catch (const TestException& e) {
         cout << "Test error: " << e.getMessage() << endl;
         cout << "File name: " << e.getFilename() << endl;
