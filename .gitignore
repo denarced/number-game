@@ -6,3 +6,5 @@ bin/
 
 # Specific files
 .sconsign.dblite
+# Ctags file
+tags

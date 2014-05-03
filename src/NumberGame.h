@@ -1,3 +1,6 @@
+#ifndef __NUMBERGAME_H
+#define __NUMBERGAME_H
+
 class NumberGame {
 protected:
     int *m_arvo;
@@ -27,3 +30,5 @@ public:
     bool isFinished() const;
     int *getVals() const;
 };
+
+#endif // __NUMBERGAME_H

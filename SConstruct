@@ -1,7 +1,7 @@
 import os
 import shutil
 
-rootEnv = Environment(CCFLAGS = '-Wall')
+rootEnv = Environment(CCFLAGS = '-Wall', CXXFLAGS="-std=c++11")
 environments = []
 for flags in [['-O2'], ['-g']]:
     env = rootEnv.Clone()
