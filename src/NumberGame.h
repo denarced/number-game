@@ -3,10 +3,10 @@
 
 class NumberGame {
 protected:
-    int *m_arvo;
+    int *board;
 public:
     NumberGame();
-    NumberGame(NumberGame &alkuperainen);
+    NumberGame(NumberGame &rhs);
     ~NumberGame();
     /**
      * Shuffle the game.
@@ -17,11 +17,11 @@ public:
     /*
      * Move number to a free square if possible.
      *
-     * Precondition: 1 <= numero && numbero <= 15.
-     * Postcondition: if zero is next to the numero, they have swapped places.
+     * Precondition: 1 <= number && number <= 15.
+     * Postcondition: if zero is next to the number, they have swapped places.
      *                if not => return false.
      */
-    bool move(int numero);
+    bool move(int number);
     /*
      * Is the game over.
      *

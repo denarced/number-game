@@ -4,41 +4,41 @@
 #include <ctime>
 
 NumberGame::NumberGame() {
-    m_arvo = (int *)malloc(16 * sizeof(int));
+    board = (int *)malloc(16 * sizeof(int));
     for (int i = 0; i < 15; ++i) {
-        m_arvo[i] = i + 1;
+        board[i] = i + 1;
     }
-    m_arvo[15] = 0;
+    board[15] = 0;
 }
 
 NumberGame::~NumberGame() {
-    free(m_arvo);
+    free(board);
 }
 
 void NumberGame::shuffle() {
     for (int i = 0; i < 16; ++i)
-        *(m_arvo + i) = i;
+        *(board + i) = i;
     srand(time(0));
-    int mista, mihin, temp;
+    int from, to, temp;
     for (int i = 0; i < 500; ++i) {
-        mista = rand() % 16;
-        mihin = rand() % 16;
-        if (mista == mihin)
+        from = rand() % 16;
+        to = rand() % 16;
+        if (from == to)
             continue;
-        temp = *(m_arvo + mihin);
-        *(m_arvo + mihin) = *(m_arvo + mista);
-        *(m_arvo + mista) = temp;
+        temp = *(board + to);
+        *(board + to) = *(board + from);
+        *(board + from) = temp;
     }
 }
 
-bool NumberGame::move(int numero) {
-    if (numero < 1 || numero > 15)
+bool NumberGame::move(int number) {
+    if (number < 1 || number > 15)
         return false;
     int num_loc, zero_loc;
     for (int i = 0; i < 16; ++i) {
-        if (*(m_arvo + i) == numero)
+        if (*(board + i) == number)
             num_loc = i;
-        if (*(m_arvo + i) == 0)
+        if (*(board + i) == 0)
             zero_loc = i;
     }
     bool top, bottom, right, left;
@@ -66,26 +66,26 @@ bool NumberGame::move(int numero) {
             numIsAcceptable = true;
     if (!numIsAcceptable)
         return false;
-    *(m_arvo + zero_loc) = numero;
-    *(m_arvo + num_loc) = 0;
+    *(board + zero_loc) = number;
+    *(board + num_loc) = 0;
     return false;
 }
 
 bool NumberGame::isFinished() const {
     for (int i = 0; i < 15; ++i)
-        if (m_arvo[i] != (i + 1))
+        if (board[i] != (i + 1))
             return false;
     return true;
 }
 
 int *NumberGame::getVals() const {
-    return this->m_arvo;
+    return this->board;
 }
 
-NumberGame::NumberGame(NumberGame &alkuperainen) {
-    m_arvo = (int *) malloc(16 * sizeof(int));
+NumberGame::NumberGame(NumberGame &rhs) {
+    board = (int *) malloc(16 * sizeof(int));
     for (int i = 0; i < 15; ++i) {
-        m_arvo[i] = i + 1;
+        board[i] = i + 1;
     }
-    m_arvo[15] = 0;
+    board[15] = 0;
 }
