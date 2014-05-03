@@ -15,7 +15,7 @@ NumberGame::~NumberGame() {
     free(m_arvo);
 }
 
-void NumberGame::sekoita() {
+void NumberGame::shuffle() {
     for (int i = 0; i < 16; ++i)
         *(m_arvo + i) = i;
     srand(time(0));
@@ -31,7 +31,7 @@ void NumberGame::sekoita() {
     }
 }
 
-bool NumberGame::siirto(int numero) {
+bool NumberGame::move(int numero) {
     if (numero < 1 || numero > 15)
         return false;
     int num_loc, zero_loc;

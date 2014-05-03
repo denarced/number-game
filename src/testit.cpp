@@ -2,15 +2,15 @@
 
 int main(int, char **) {
     NumberGame test;
-    test.sekoita();
-    test.siirto(1);
-    test.siirto(3);
-    test.siirto(5);
-    test.siirto(7);
-    test.siirto(9);
-    test.siirto(11);
-    test.siirto(13);
-    test.siirto(15);
+    test.shuffle();
+    test.move(1);
+    test.move(3);
+    test.move(5);
+    test.move(7);
+    test.move(9);
+    test.move(11);
+    test.move(13);
+    test.move(15);
 
     return 0;
 }

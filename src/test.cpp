@@ -8,12 +8,12 @@ using namespace std;
 
 void testShuffle() {
     NumberGame numberGame;
-    numberGame.sekoita();
+    numberGame.shuffle();
 
     for (int i = 0; i <= 15; ++i) {
         int *numbers = numberGame.getVals();
         bool found = false;
-        for (int numIndex = 1; numIndex <= 15; ++numIndex) {
+        for (int numIndex = 0; numIndex <= 15; ++numIndex) {
             if (numbers[numIndex] == i) {
                 found = true;
                 break;

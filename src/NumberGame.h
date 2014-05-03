@@ -13,7 +13,7 @@ public:
      *
      * Postcondition: array contains numbers 1 - 15 and an empty one.
      */
-    void sekoita();
+    void shuffle();
     /*
      * Move number to a free square if possible.
      *
@@ -21,7 +21,7 @@ public:
      * Postcondition: if zero is next to the numero, they have swapped places.
      *                if not => return false.
      */
-    bool siirto(int numero);
+    bool move(int numero);
     /*
      * Is the game over.
      *
