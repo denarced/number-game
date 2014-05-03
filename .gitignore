@@ -1,21 +1,8 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Directories
+bin/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# File patterns
+*.swp
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Specific files
+.sconsign.dblite

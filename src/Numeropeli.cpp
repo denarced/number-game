@@ -74,15 +74,18 @@ bool Numeropeli::siirto(int numero)
 	if(zero_loc%4 == 3)
 		right = false;
 	bool numIsAcceptable = false;
-	if(top)
+	if(top) {
 		if(zero_loc - 4 == num_loc)
 			numIsAcceptable = true;
-	else if( right )
+    }
+	else if( right ) {
 		if(zero_loc + 1 == num_loc)
 			numIsAcceptable = true;
-	else if( bottom )
+    }
+	else if( bottom ) {
 		if(zero_loc + 4 == num_loc )
 			numIsAcceptable = true;
+    }
 	else if( left )
 		if(zero_loc - 1 == num_loc )
 			numIsAcceptable = true;
