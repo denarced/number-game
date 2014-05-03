@@ -5,17 +5,17 @@ protected:
      */
     int *m_arvo;
 public:
-    NumberGame(void);
+    NumberGame();
     /*
      *  copy-constructor
      */
     NumberGame(NumberGame &alkuperainen);
-    ~NumberGame(void);
+    ~NumberGame();
     /* sekoittaa pelin
      * esiehto : true
      * j�lkiehto : taulukko sis�lt�� luvut 1-15 ja tyhj�n
      */
-    void sekoita(void);
+    void sekoita();
     /*
      *  Siirt�� yksitt�isen numeron vapaaseen ruutuun jos mahdollista
      *  Esiehto : 1 <= numero && numero <= 15
@@ -28,9 +28,9 @@ public:
      *  esiehto : true
      *  j�lkiehto : numerot ovat j�rjestyksess�
      */
-    bool isFinished(void) const;
+    bool isFinished() const;
     /*
      *  saantifunktio eli "getteri"
      */
-    int *getVals(void) const;
+    int *getVals() const;
 };

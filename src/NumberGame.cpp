@@ -5,7 +5,7 @@
 
 using namespace std;
 
-NumberGame::NumberGame(void) {
+NumberGame::NumberGame() {
     m_arvo = (int *)malloc(16 * sizeof(int));
     for (int i = 0; i < 15; ++i) {
         m_arvo[i] = i + 1;
@@ -13,11 +13,11 @@ NumberGame::NumberGame(void) {
     m_arvo[15] = 0;
 }
 
-NumberGame::~NumberGame(void) {
+NumberGame::~NumberGame() {
     free(m_arvo);
 }
 
-void NumberGame::sekoita(void) {
+void NumberGame::sekoita() {
     for (int i = 0; i < 16; ++i)
         *(m_arvo + i) = i;
     srand(time(0));
@@ -95,14 +95,14 @@ bool NumberGame::siirto(int numero) {
     return false;
 }
 
-bool NumberGame::isFinished(void) const {
+bool NumberGame::isFinished() const {
     for (int i = 0; i < 15; ++i)
         if (m_arvo[i] != (i + 1))
             return false;
     return true;
 }
 
-int *NumberGame::getVals(void) const {
+int *NumberGame::getVals() const {
     return this->m_arvo;
 }
 
