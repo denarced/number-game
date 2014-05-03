@@ -45,7 +45,7 @@ void testCopyConstructorAndBoardValues() {
     int *firstBoard = first.getVals();
     int *secondBoard = second.getVals();
 
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
         if (firstBoard[i] != secondBoard[i]) {
             throw TestException("Copy ctor does not duplicate board.", __FILE__, __LINE__);
         }
@@ -91,7 +91,7 @@ void testMovingAll() {
             std::stringstream ss;
             ss << "Unexpected value: " << i << "." << endl;
             ss << "Board:" << endl;
-            for (int bInx = 0; bInx < 16; ++bInx) {
+            for (int bInx = 0; bInx < NumberGame::SIZE; ++bInx) {
                 ss << std::setw(3);
                 ss << board[bInx];
                 if (bInx % 4 == 3) {

@@ -3,10 +3,12 @@
 
 class NumberGame {
 public:
+    // CREATORS
     NumberGame();
     NumberGame(NumberGame &rhs);
     ~NumberGame();
 
+    // MUTATORS
     /**
      * Shuffle the game.
      *
@@ -23,6 +25,7 @@ public:
      */
     bool move(int number);
 
+    // ACCESSORS
     /**
      * Is the game over.
      *
@@ -30,6 +33,9 @@ public:
      */
     bool isFinished() const;
     int *getVals() const;
+
+    // CONSTANTS
+    const static int SIZE = 16;
 
 protected:
     int *board;

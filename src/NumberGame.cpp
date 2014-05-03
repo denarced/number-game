@@ -7,7 +7,7 @@
 #include <ctime>
 
 NumberGame::NumberGame() {
-    board = (int *)malloc(16 * sizeof(int));
+    board = (int *)malloc(NumberGame::SIZE * sizeof(int));
     for (int i = 0; i < 15; ++i) {
         board[i] = i + 1;
     }
@@ -19,13 +19,13 @@ NumberGame::~NumberGame() {
 }
 
 void NumberGame::shuffle() {
-    for (int i = 0; i < 16; ++i)
+    for (int i = 0; i < NumberGame::SIZE; ++i)
         *(board + i) = i;
     srand(time(0));
     int from, to, temp;
     for (int i = 0; i < 500; ++i) {
-        from = rand() % 16;
-        to = rand() % 16;
+        from = rand() % NumberGame::SIZE;
+        to = rand() % NumberGame::SIZE;
         if (from == to)
             continue;
         temp = *(board + to);
@@ -38,7 +38,7 @@ bool NumberGame::move(int number) {
     if (number < 1 || number > 15)
         return false;
     int num_loc = -1;
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
         if (*(board + i) == number) {
             num_loc = i;
         }
@@ -58,7 +58,7 @@ bool NumberGame::move(int number) {
 
     for (int i = 0; i < 4; ++i) {
         int loc = zeroLocations[i];
-        if (0 <= loc && loc < 16) {
+        if (0 <= loc && loc < NumberGame::SIZE) {
             if (board[loc] == 0) {
                 *(board + loc) = number;
                 *(board + num_loc) = 0;
@@ -82,8 +82,8 @@ int *NumberGame::getVals() const {
 }
 
 NumberGame::NumberGame(NumberGame &rhs) {
-    board = (int *) malloc(16 * sizeof(int));
-    for (int i = 0; i < 16; ++i) {
+    board = (int *) malloc(NumberGame::SIZE * sizeof(int));
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
         board[i] = rhs.board[i];
     }
 }
