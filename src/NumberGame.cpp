@@ -1,5 +1,8 @@
 #include "NumberGame.h"
 
+#include <sstream>
+#include <stdexcept>
+
 #include <cstdlib>
 #include <ctime>
 
@@ -34,40 +37,36 @@ void NumberGame::shuffle() {
 bool NumberGame::move(int number) {
     if (number < 1 || number > 15)
         return false;
-    int num_loc, zero_loc;
+    int num_loc = -1;
     for (int i = 0; i < 16; ++i) {
-        if (*(board + i) == number)
+        if (*(board + i) == number) {
             num_loc = i;
-        if (*(board + i) == 0)
-            zero_loc = i;
+        }
     }
-    bool top, bottom, right, left;
-    top = bottom = right = left = true;
-    if (zero_loc < 4)
-        top = false;
-    if (zero_loc > (15 - 4))
-        bottom = false;
-    if (zero_loc % 4 == 0)
-        left = false;
-    if (zero_loc % 4 == 3)
-        right = false;
-    bool numIsAcceptable = false;
-    if (top) {
-        if (zero_loc - 4 == num_loc)
-            numIsAcceptable = true;
-    } else if (right) {
-        if (zero_loc + 1 == num_loc)
-            numIsAcceptable = true;
-    } else if (bottom) {
-        if (zero_loc + 4 == num_loc)
-            numIsAcceptable = true;
-    } else if (left)
-        if (zero_loc - 1 == num_loc)
-            numIsAcceptable = true;
-    if (!numIsAcceptable)
-        return false;
-    *(board + zero_loc) = number;
-    *(board + num_loc) = 0;
+    if (num_loc < 0) {
+        std::stringstream ss;
+        ss << "Internal error " << __FILE__ << " " << __LINE__ << ".";
+        throw std::runtime_error(ss.str());
+    }
+
+    int zeroLocations[4] = {
+        num_loc + 1,
+        num_loc + 4,
+        num_loc - 1,
+        num_loc - 4
+    };
+
+    for (int i = 0; i < 4; ++i) {
+        int loc = zeroLocations[i];
+        if (0 <= loc && loc < 16) {
+            if (board[loc] == 0) {
+                *(board + loc) = number;
+                *(board + num_loc) = 0;
+
+                return true;
+            }
+        }
+    }
     return false;
 }
 
