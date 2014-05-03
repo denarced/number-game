@@ -12,10 +12,10 @@ void testShuffle() {
     numberGame.shuffle();
 
     for (int i = 0; i <= 15; ++i) {
-        int *numbers = numberGame.getVals();
+        vector<int> numbers = numberGame.getVals();
         bool found = false;
         for (int numIndex = 0; numIndex <= 15; ++numIndex) {
-            if (numbers[numIndex] == i) {
+            if (numbers.at(numIndex) == i) {
                 found = true;
                 break;
             }
@@ -29,24 +29,16 @@ void testShuffle() {
     }
 }
 
-void testCopyConstructor() {
-    NumberGame first;
-    NumberGame second(first);
-    if (first.getVals() == second.getVals()) {
-        throw TestException("Objects share internal pointer.", __FILE__, __LINE__);
-    }
-}
-
 void testCopyConstructorAndBoardValues() {
     NumberGame first;
     first.shuffle();
     NumberGame second(first);
 
-    int *firstBoard = first.getVals();
-    int *secondBoard = second.getVals();
+    vector<int> firstBoard = first.getVals();
+    vector<int> secondBoard = second.getVals();
 
     for (int i = 0; i < NumberGame::SIZE; ++i) {
-        if (firstBoard[i] != secondBoard[i]) {
+        if (firstBoard.at(i) != secondBoard.at(i)) {
             throw TestException("Copy ctor does not duplicate board.", __FILE__, __LINE__);
         }
     }
@@ -55,7 +47,7 @@ void testCopyConstructorAndBoardValues() {
 void testFirstMove() {
     NumberGame numberGame;
     numberGame.move(1);
-    int *board = numberGame.getVals();
+    vector<int> board = numberGame.getVals();
 
     if (board[0] != 1) {
         throw TestException("1 should have been moved.", __FILE__, __LINE__);
@@ -79,7 +71,7 @@ void testMovingAll() {
         }
     }
 
-    int *board = numberGame.getVals();
+    vector<int> board = numberGame.getVals();
     int expected[] = {
         2, 3, 4, 0,
         1, 5, 6, 7,
@@ -106,7 +98,6 @@ void testMovingAll() {
 int main() {
     try {
         testShuffle();
-        testCopyConstructor();
         testCopyConstructorAndBoardValues();
         testFirstMove();
         testMovingAll();
@@ -115,12 +106,12 @@ int main() {
             << "File name: " << e.getFilename() << endl
             << "Line number: " << e.getLineNumber() << endl;
         return 1;
-    } catch (const std::exception& e) {
+    } /*catch (const std::exception& e) {
         cout << "std::exception: " << e.what() << endl;
         return 1;
     } catch (...) {
         cout << "Really nasty: ... caught." << endl;
         return 1;
-    }
+    }*/
     return 0;
 }

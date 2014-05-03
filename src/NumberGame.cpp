@@ -3,24 +3,26 @@
 #include <sstream>
 #include <stdexcept>
 
+#include <cassert>
 #include <cstdlib>
 #include <ctime>
 
+using std::vector;
+
 NumberGame::NumberGame() {
-    board = (int *)malloc(NumberGame::SIZE * sizeof(int));
     for (int i = 0; i < 15; ++i) {
-        board[i] = i + 1;
+        board.push_back(i + 1);
     }
-    board[15] = 0;
+    board.push_back(0);
 }
 
 NumberGame::~NumberGame() {
-    free(board);
 }
 
 void NumberGame::shuffle() {
-    for (int i = 0; i < NumberGame::SIZE; ++i)
-        *(board + i) = i;
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
+        board.at(i) = i;
+    }
     srand(time(0));
     int from, to, temp;
     for (int i = 0; i < 500; ++i) {
@@ -28,9 +30,9 @@ void NumberGame::shuffle() {
         to = rand() % NumberGame::SIZE;
         if (from == to)
             continue;
-        temp = *(board + to);
-        *(board + to) = *(board + from);
-        *(board + from) = temp;
+        temp = board.at(to);
+        board.at(to) = board.at(from);
+        board.at(from) = temp;
     }
 }
 
@@ -39,8 +41,9 @@ bool NumberGame::move(int number) {
         return false;
     int num_loc = -1;
     for (int i = 0; i < NumberGame::SIZE; ++i) {
-        if (*(board + i) == number) {
+        if (board.at(i) == number) {
             num_loc = i;
+            break;
         }
     }
     if (num_loc < 0) {
@@ -59,9 +62,9 @@ bool NumberGame::move(int number) {
     for (int i = 0; i < 4; ++i) {
         int loc = zeroLocations[i];
         if (0 <= loc && loc < NumberGame::SIZE) {
-            if (board[loc] == 0) {
-                *(board + loc) = number;
-                *(board + num_loc) = 0;
+            if (board.at(loc) == 0) {
+                board.at(loc) = number;
+                board.at(num_loc) = 0;
 
                 return true;
             }
@@ -72,18 +75,13 @@ bool NumberGame::move(int number) {
 
 bool NumberGame::isFinished() const {
     for (int i = 0; i < 15; ++i)
-        if (board[i] != (i + 1))
+        if (board.at(i) != (i + 1)) {
             return false;
+        }
     return true;
 }
 
-int *NumberGame::getVals() const {
+vector<int> NumberGame::getVals() const {
     return this->board;
 }
 
-NumberGame::NumberGame(NumberGame &rhs) {
-    board = (int *) malloc(NumberGame::SIZE * sizeof(int));
-    for (int i = 0; i < NumberGame::SIZE; ++i) {
-        board[i] = rhs.board[i];
-    }
-}

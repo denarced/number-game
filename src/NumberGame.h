@@ -1,11 +1,12 @@
 #ifndef __NUMBERGAME_H
 #define __NUMBERGAME_H
 
+#include <vector>
+
 class NumberGame {
 public:
     // CREATORS
     NumberGame();
-    NumberGame(NumberGame &rhs);
     ~NumberGame();
 
     // MUTATORS
@@ -32,13 +33,13 @@ public:
      * Postcondition: the numbers are in order.
      */
     bool isFinished() const;
-    int *getVals() const;
+    std::vector<int> getVals() const;
 
     // CONSTANTS
     const static int SIZE = 16;
 
-protected:
-    int *board;
+private:
+    std::vector<int> board;
 };
 
 #endif // __NUMBERGAME_H
