@@ -1,5 +1,4 @@
 Import('env')
 
-env.Program(['testit.cpp', 'NumberGame.cpp'])
 env.Program(['test.cpp', 'NumberGame.cpp', 'TestException.cpp'])
 
