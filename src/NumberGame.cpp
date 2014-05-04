@@ -19,6 +19,13 @@ NumberGame::NumberGame() {
 NumberGame::~NumberGame() {
 }
 
+void NumberGame::setAlmostInOrder() {
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
+        board.at(i) = i;
+    }
+    this->move(4);
+}
+
 void NumberGame::shuffle() {
     for (int i = 0; i < NumberGame::SIZE; ++i) {
         board.at(i) = i;
@@ -76,15 +83,15 @@ bool NumberGame::move(int number) {
 bool NumberGame::isFinished() const {
     int next = 1;
     for (int i = 0; i < NumberGame::SIZE; ++i) {
-        int num = board.at(i);
+        const int num = board.at(i);
         if (num == 0) {
             continue;
         }
 
-        if (num != next) {
-            return false;
-        } else {
+        if (num == next) {
             ++next;
+        } else {
+            return false;
         }
     }
     return true;

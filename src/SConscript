@@ -1,4 +1,4 @@
 Import('env')
 
 env.Program(['test.cpp', 'NumberGame.cpp', 'TestException.cpp'])
-
+env.Program('numbergame', ['main.cpp', 'Ui.cpp', 'NumberGame.cpp'])

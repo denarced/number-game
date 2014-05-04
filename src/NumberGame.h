@@ -25,6 +25,7 @@ public:
      *                if not => return false.
      */
     bool move(int number);
+    void setAlmostInOrder();
 
     // ACCESSORS
     /**
