@@ -11,7 +11,7 @@ void testShuffle() {
     NumberGame numberGame;
     numberGame.shuffle();
 
-    for (int i = 0; i <= 15; ++i) {
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
         vector<int> numbers = numberGame.getVals();
         bool found = false;
         for (int numIndex = 0; numIndex <= 15; ++numIndex) {
@@ -95,23 +95,50 @@ void testMovingAll() {
     }
 }
 
+void testIsFinishedWithoutShuffle() {
+    NumberGame numberGame;
+    if (!numberGame.isFinished()) {
+        throw TestException("testIsFinishedWithoutShuffle failed.", __FILE__, __LINE__);
+    }
+}
+
+
+void testIsFinishedAfterShuffle() {
+    NumberGame numberGame;
+    numberGame.shuffle();
+    if (numberGame.isFinished()) {
+        throw TestException("testIsFinishedAfterShuffle failed.", __FILE__, __LINE__);
+    }
+}
+
+void testIsFinishedWithEmptyNotInCorner() {
+    NumberGame numberGame;
+    numberGame.move(15);
+    if (!numberGame.isFinished()) {
+        throw TestException("testIsFinishedWithEmptyNotInCorner failed.", __FILE__, __LINE__);
+    }
+}
+
 int main() {
     try {
         testShuffle();
         testCopyConstructorAndBoardValues();
         testFirstMove();
         testMovingAll();
+        testIsFinishedWithoutShuffle();
+        testIsFinishedAfterShuffle();
+        testIsFinishedWithEmptyNotInCorner();
     } catch (const TestException& e) {
         cout << "Test error: " << e.getMessage() << endl
             << "File name: " << e.getFilename() << endl
             << "Line number: " << e.getLineNumber() << endl;
         return 1;
-    } /*catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         cout << "std::exception: " << e.what() << endl;
         return 1;
     } catch (...) {
         cout << "Really nasty: ... caught." << endl;
         return 1;
-    }*/
+    }
     return 0;
 }

@@ -13,14 +13,14 @@ public:
     /**
      * Shuffle the game.
      *
-     * Postcondition: array contains numbers 1 - 15 and an empty one.
+     * Postcondition: array contains numbers 1 - (SIZE - 1) and an empty one.
      */
     void shuffle();
 
     /**
      * Move number to a free square if possible.
      *
-     * Precondition: 1 <= number && number <= 15.
+     * Precondition: 1 <= number && number < SIZE.
      * Postcondition: if zero is next to the number, they have swapped places.
      *                if not => return false.
      */

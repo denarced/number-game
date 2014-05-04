@@ -74,10 +74,19 @@ bool NumberGame::move(int number) {
 }
 
 bool NumberGame::isFinished() const {
-    for (int i = 0; i < 15; ++i)
-        if (board.at(i) != (i + 1)) {
-            return false;
+    int next = 1;
+    for (int i = 0; i < NumberGame::SIZE; ++i) {
+        int num = board.at(i);
+        if (num == 0) {
+            continue;
         }
+
+        if (num != next) {
+            return false;
+        } else {
+            ++next;
+        }
+    }
     return true;
 }
 
